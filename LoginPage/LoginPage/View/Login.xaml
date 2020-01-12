@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="LoginPage.View.Login">
+
+    <StackLayout BackgroundColor="{StaticResource MainColor}">
+
+        <Label Text="LOGIN" FontSize="50" Style="{StaticResource LabelStyle}"></Label>
+
+        <Label Text="Email" Style="{StaticResource LabelStyle}"></Label>
+        <Entry Text="{Binding MemberModel.Email, Mode=TwoWay}" Style="{StaticResource EntryStyle}"></Entry>
+
+        <Label Text="Password" Style="{StaticResource LabelStyle}"></Label>
+        <Entry Text="{Binding MemberModel.Password, Mode=TwoWay}" IsPassword="True" Style="{StaticResource EntryStyle}"></Entry>
+
+        <Button Text="LOGIN" Command="{Binding LoginCommand}"></Button>
+
+        <Button Text="CREATE ACCOUNT" Command="{Binding MoveToCreateAccountCommand}"></Button>
+        
+    </StackLayout>
+    
+</ContentPage>
