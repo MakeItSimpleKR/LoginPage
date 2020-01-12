@@ -11,19 +11,24 @@ namespace LoginPage.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private Member memberModel { get; set; }
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private Member _member { get; set; }
 
         public Member MemberModel
         {
             get
             {
-                return memberModel;
+                return _member;
             }
             set
             {
-                if (memberModel != value)
+                if (_member != value)
                 {
-                    memberModel = value;
+                    _member = value;
                     OnPropertyChanged("MemberModel");
                 }
             }
@@ -49,19 +54,13 @@ namespace LoginPage.ViewModel
 
         private async void CreateAccount()
         {
-            string alertMessage = string.Format("FirstName:{0}\nLastName:{1}\nEmail:{2}\nPassword:{3}", memberModel.FirstName, memberModel.LastName, memberModel.Email, memberModel.Password);
+            string alertMessage = string.Format("FirstName:{0}\nLastName:{1}\nEmail:{2}\nPassword:{3}", _member.FirstName, _member.LastName, _member.Email, _member.Password);
             await Application.Current.MainPage.DisplayAlert("계정생성", alertMessage, "확인");
         }
 
         public CreateAccountViewModel()
         {
-            memberModel = new Member();
+            _member = new Member();
         }
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
     }
 }

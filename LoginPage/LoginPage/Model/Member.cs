@@ -7,53 +7,53 @@ namespace LoginPage.Model
     class Member
     {
 
-        private string firstName { get; set; }
-        private string lastName { get; set; }
-        private string email { get; set; }
-        private string password { get; set; }
+        private string _firstName { get; set; }
+        private string _lastName { get; set; }
+        private string _email { get; set; }
+        private string _password { get; set; }
 
         public string FirstName
         {
             get
             {
-                return firstName;
+                return _firstName;
             }
             set
             {
-                firstName = value;
+                _firstName = value;
             }
         }
         public string LastName
         {
             get
             {
-                return lastName;
+                return _lastName;
             }
             set
             {
-                lastName = value;
+                _lastName = value;
             }
         }
         public string Email
         {
             get
             {
-                return email;
+                return _email;
             }
             set
             {
-                email = value;
+                _email = value;
             }
         }
         public string Password
         {
             get
             {
-                return password;
+                return _password;
             }
             set
             {
-                password = value;
+                _password = value;
             }
         }
 
