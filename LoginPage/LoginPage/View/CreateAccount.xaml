@@ -3,29 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ctr ="clr-namespace:LoginPage.Renderer"
              mc:Ignorable="d"
              x:Class="LoginPage.View.CreateAccount">
     
-    <StackLayout BackgroundColor="{StaticResource SubColor}">
+    <Grid BackgroundColor="{StaticResource SubColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+       
+        <ImageButton Grid.Row="0" Source="XBtn.png" Margin="20" BackgroundColor="Transparent" Command="{Binding DismissCommand}" HorizontalOptions="Start" VerticalOptions="Start"/>
+
+        <Label Grid.Row="1" Margin="40,0,0,0" Text="REGISTER" FontSize="50" Style="{StaticResource LabelStyle}"/>
+
+        <StackLayout Grid.Row="2" Padding="40">
+            <Label Text="First Name" Style="{StaticResource LabelStyle}"/>
+            <ctr:CustomEntry Text="{Binding MemberModel.FirstName}" Style="{StaticResource EntryStyle}" 
+                             Placeholder="Make It" PlaceholderColor="#FFFFFF"/>
+            <Frame Style="{StaticResource UnderlineStyle}"/>
+
+            <Label Text="Last Name" Style="{StaticResource LabelStyle}"/>
+            <ctr:CustomEntry Text="{Binding MemberModel.LastName}" Style="{StaticResource EntryStyle}" 
+                             Placeholder="Simple" PlaceholderColor="#FFFFFF" />
+            <Frame Style="{StaticResource UnderlineStyle}"/>
             
-        <Button Text="닫기" Command="{Binding DismissCommand}"></Button>
+            <Label Text="Email" Style="{StaticResource LabelStyle}"/>
+            <ctr:CustomEntry Text="{Binding MemberModel.Email}" Style="{StaticResource EntryStyle}"
+                             Placeholder="insert@kakao.com" PlaceholderColor="#FFFFFF"/>
+            <Frame Style="{StaticResource UnderlineStyle}"/>
+            
+            <Label Text="Password" Style="{StaticResource LabelStyle}"/>
+            <ctr:CustomEntry Text="{Binding MemberModel.Password}" Style="{StaticResource EntryStyle}" 
+                             IsPassword="True"  Placeholder="**********" PlaceholderColor="#FFFFFF"/>
+            <Frame Style="{StaticResource UnderlineStyle}"/>
+        </StackLayout>
 
-        <Label Text="REGISTER" FontSize="50" Style="{StaticResource LabelStyle}"></Label>
-
-        <Label Text="First Name" Style="{StaticResource LabelStyle}"></Label>
-        <Entry Text="{Binding MemberModel.FirstName, Mode=TwoWay}" Style="{StaticResource EntryStyle}" ></Entry>
-
-        <Label Text="Last Name" Style="{StaticResource LabelStyle}"></Label>
-        <Entry Text="{Binding MemberModel.LastName, Mode=TwoWay}" Style="{StaticResource EntryStyle}"></Entry>
-
-        <Label Text="Email" Style="{StaticResource LabelStyle}"></Label>
-        <Entry Text="{Binding MemberModel.Email, Mode=TwoWay}" Style="{StaticResource EntryStyle}"></Entry>
-
-        <Label Text="Password" Style="{StaticResource LabelStyle}"></Label>
-        <Entry Text="{Binding MemberModel.Password, Mode=TwoWay}" IsPassword="True" Style="{StaticResource EntryStyle}"></Entry>
-
-        <Button Text="CREATE ACCOUNT" Command="{Binding CreateCommand}"></Button>
-
-    </StackLayout>
+        <Button Grid.Row="3" Text="CREATE ACCOUNT" Style="{StaticResource WhiteBorderBtn}" 
+                WidthRequest="200" Command="{Binding CreateCommand}"/>
+    </Grid>
     
 </ContentPage>
