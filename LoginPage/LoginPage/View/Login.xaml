@@ -3,23 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ctr ="clr-namespace:LoginPage.Renderer"
              mc:Ignorable="d"
-             x:Class="LoginPage.View.Login">
+             x:Class="LoginPage.View.Login"
+             BackgroundImageSource="BackgroundImage.png">
 
-    <StackLayout BackgroundColor="{StaticResource MainColor}">
+    <Grid Padding="40">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
 
-        <Label Text="LOGIN" FontSize="50" Style="{StaticResource LabelStyle}"></Label>
+        <Label Grid.Row="0" Text="LOGIN" Style="{StaticResource LabelStyle}" 
+               FontSize="50" VerticalOptions="End" HorizontalOptions="Start"/>
 
-        <Label Text="Email" Style="{StaticResource LabelStyle}"></Label>
-        <Entry Text="{Binding MemberModel.Email, Mode=TwoWay}" Style="{StaticResource EntryStyle}"></Entry>
+        <StackLayout Grid.Row="1">
+            <Label Text="Email" Style="{StaticResource LabelStyle}" Margin="0,0,0,20"/>
+            <ctr:CustomEntry Margin="0" Text="{Binding MemberModel.Email}" Style="{StaticResource EntryStyle}" 
+                             Placeholder="insert@kakao.com" PlaceholderColor="#FFFFFF"/>
+            <Frame Style="{StaticResource UnderlineStyle}"/>
 
-        <Label Text="Password" Style="{StaticResource LabelStyle}"></Label>
-        <Entry Text="{Binding MemberModel.Password, Mode=TwoWay}" IsPassword="True" Style="{StaticResource EntryStyle}"></Entry>
+            <Label Text="Password" Style="{StaticResource LabelStyle}" Margin="0,0,0,20"/>
+            <ctr:CustomEntry Margin="0" Text="{Binding MemberModel.Password}" Style="{StaticResource EntryStyle}" 
+                             Placeholder="**********" PlaceholderColor="#FFFFFF" IsPassword="True"/>
+            <Frame Style="{StaticResource UnderlineStyle}" Margin="0"/>
 
-        <Button Text="LOGIN" Command="{Binding LoginCommand}"></Button>
+            <Button Text="Forgot Password?" BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="End" TextColor="#FFFFFF"
+                    Command="{Binding FindPWCommand}"/>
+        </StackLayout>
 
-        <Button Text="CREATE ACCOUNT" Command="{Binding MoveToCreateAccountCommand}"></Button>
-        
-    </StackLayout>
+        <Button Grid.Row="2" Text="LOGIN" Style="{StaticResource WhiteBorderBtn}"
+                WidthRequest="150" VerticalOptions="End"
+                Command="{Binding LoginCommand}" />
+
+        <ImageButton Grid.Row="3" Margin="0,50,0,0" Source="CreateAccountBtn.png" 
+                     BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="End" Aspect="AspectFit" 
+                     Command="{Binding MoveToCreateAccountCommand}"/>
+
+    </Grid>
     
 </ContentPage>
